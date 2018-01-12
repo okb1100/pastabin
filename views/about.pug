@@ -1,0 +1,39 @@
+doctype=html
+html(language=en)
+    head
+        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Yet Another PastaBin
+        link(rel="stylesheet", href="public/css/bootstrap.min.css")
+        script(src="public/js/jquery.min.js")
+        script(src="public/js/popper.min.js")
+        script(src="public/js/bootstrap.min.js")
+
+    body.bg-dark
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-1
+            a.navbar-brand(href="/") PastaBin
+            button.navbar-toggler.hidden-lg-up(type="button", data-toggle="collapse", data-target="#collapsibleNavId" aria-controls="collapsibleNav" aria-expanded="false")
+                i.fa.fa-bars(aria-hidden="true")
+            div.collapse.navbar-collapse#collapsibleNav
+                ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+                    li.nav-item
+                        a.nav-link(href="/")  Upload
+                    li.nav-item.active
+                        a.nav-link(href="/about")  About
+                
+        .container
+            .row
+                .col-md-6
+                    .card.bg-dark.text-white.p-2
+                        h3.card-title What's this?
+                        p.card-text.
+                                You can publish any kind of text on this web app and share it with someone else.
+                            Anything besides the actual content is optional. No signing up or something else.
+                .col-md-6
+                    .card.bg-dark.text-white.p-2
+                        h3.card-title How do I use it?
+                        p.card-text.
+                                Just go to the main page, paste/type what you want to publish to the big text box and click send. Then send the URL to the people you want to share the text with. 
+                        
+                            
+                    

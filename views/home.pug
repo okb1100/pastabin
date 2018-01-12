@@ -1,0 +1,62 @@
+doctype=html
+html(language=en)
+    head
+        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=0.75, user-scalable=no")
+        title Yet Another PastaBin
+        link(rel="stylesheet", href="public/css/bootstrap.min.css")
+        link(rel="stylesheet", href="public/css/styles.css")
+        script(src="public/js/jquery.min.js")
+        script(src="public/js/popper.min.js")
+        script(src="public/js/bootstrap.min.js")
+        script(src="public/js/client.js")
+
+    body.bg-dark
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-1
+            a.navbar-brand(href="/") PastaBin
+            button.navbar-toggler.hidden-lg-up(type="button", data-toggle="collapse", data-target="#collapsibleNavId" aria-controls="collapsibleNav" aria-expanded="false")
+                i.fa.fa-bars(aria-hidden="true")
+            div.collapse.navbar-collapse#collapsibleNav
+                ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+                    li.nav-item.active
+                        a.nav-link(href="/")  Upload
+                    li.nav-item
+                        a.nav-link(href="/about")  About
+                
+        .container
+            .row
+                .col-md-6.mx-auto.alert.alert-danger.text-center#sendError(role="alert" style="display:none")
+                .col-md-6.mx-auto.alert.alert-success.text-center#sendSucceeded(role="alert" style="display:none")
+                    p.mb-2 Your pasta has successfully been sent. 
+                        a.alert-link(href="") See it here.
+                    .input-group
+                        span.input-group-btn
+                            button.btn.btn-secondary(type="button", onClick="copyToClipboard('#copyLink')") Copy
+                        input.form-control.bg-dark.text-white#copyLink(type="text")
+            .row#submission
+                .col-md-8
+                    .card.mb-5.bg-dark.text-white
+                        .card-body
+                            .form-group
+                                label(for="thePasta") Paste your content below
+                                textarea.form-control.bg-dark.text-white#thePasta(rows="10", required)
+                            
+                            //.form-group
+                                label(for="fileInput") Or upload a file below
+                                input.form-control.bg-dark.text-white#filePasta(type="file")
+                            
+                        .card-footer
+                            button.btn.btn-secondary.btn-lg(type="button", onClick="uploadPasta();") Send
+                .col-md-4
+                    .card.bg-dark.text-white
+                        .card-body
+                            .form-group
+                                label(for="pastaName") Title
+                                input.form-control.bg-dark.text-white#pastaName(type="text", placeholder="Title(optional)")
+
+                            include syntaxSelector.pug
+
+                            .form-group
+                                label(for="uploaderName") Uploader name (optional)
+                                input.form-control.bg-dark.text-white#uploaderName(type="text", placeholder="Uploader Name")       
+                                
