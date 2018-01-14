@@ -44,14 +44,19 @@ html(language=en)
                             tr
                                 td Date
                                 td#date #{date}
+                    table.table.table-dark.bg-dark
+                        tbody
                             tr
                                 td
-                                    button.btn.btn-secondary(type="button", onClick="copyToClipboard('.pastaContent')") Copy 
+                                    .btn-group(role="group")
+                                        button.btn.btn-secondary(type="button", onClick="copyToClipboard('.pastaContent')") Copy 
+                                        a.btn.btn-secondary(role="button", href="download/" + id) Download
+                            tr
                                 td  
                                     .btn-group(role="group")
                                         button.btn.btn-secondary(type="button", onClick="zoom('out')") Zoom Out
                                         button.btn.btn-secondary(type="button", onClick="zoom('in')") Zoom In
-                
+                            
                 .col-md-9
                     .card.bg-dark
                         .card-body.pastaCard.p-0

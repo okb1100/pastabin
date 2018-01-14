@@ -33,6 +33,22 @@ app.get('/:id', (req, res) => {
     	else res.sendStatus(404);
     });
 });
+
+app.get('/download/:id', (req,res) => {
+	databaseHelper(dbUrl, dbName, collectionName, 'getOne', {id: req.params.id}, (err,obj) => {
+		if (obj){
+			if(obj.title.length < 1){
+				obj.title = obj.id + '.txt';
+			}
+			res.set({
+				'Content-Type': 'application/octet-stream',
+				'Content-Disposition': 'attachment; filename=' + obj.title		
+			})
+			res.send(obj.content);
+		}
+		else res.sendStatus(404);
+	})
+})
 app.post('/api/uploadPasta', (req, res) => {
     req.body.id = req.id.slice(0, 8);
     req.body.date = Date.now();
