@@ -28,7 +28,7 @@ app.get('/about', (req, res) => {
 
 app.get('/:id', (req, res) => {
     // Get the data from database and render it.
-    databaseHelper(dbUrl,dbName,collectionName,'getOne',{id: req.params.id.to}, (err, obj) => {
+    databaseHelper(dbUrl,dbName,collectionName,'getOne',{id: req.params.id}, (err, obj) => {
     	if (obj) res.render('pasta', obj);
     	else res.sendStatus(404);
     });
