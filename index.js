@@ -1,11 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+// TODO: change the id method later
 var requestId = require('express-request-id');
-var fs = require('fs');
+
+var databaseHelper = require('./dbHelper');
+const dbUrl = 'mongodb://127.0.0.1:27017';
+const dbName = 'pastabin';
+const collectionName = 'docs';
+
 var path = require('path');
 var app = express();
 
-app.port = 3000;
+app.port = process.env.PORT || 3000;
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
@@ -21,33 +27,21 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/:id', (req, res) => {
-    // read {pastaId}.json and send it
-    fs.readFile('files/' + req.params.id + '.json', (e, data) => {
-        if (e) {
-            // no such file error code
-            if (e.errno == -4058) res.sendStatus(404);
-        } else res.render('pasta', JSON.parse(data));
+    // Get the data from database and render it.
+    databaseHelper(dbUrl,dbName,collectionName,'getOne',{id: req.params.id.to}, (err, obj) => {
+    	if (obj) res.render('pasta', obj);
+    	else res.sendStatus(404);
     });
 });
-
 app.post('/api/uploadPasta', (req, res) => {
     req.body.id = req.id.slice(0, 8);
     req.body.date = Date.now();
-    //create an id and store the pasta as {id}.json for now.
-    // req.body -> title, content
-    fs.writeFile(
-        'files/' + req.body.id + '.json',
-        JSON.stringify(req.body),
-        e => {
-            if (!e) {
-                res.send(req.body.id);
-            } else {
-                console.error(e.message);
-            }
-        }
-    );
-});
 
+    databaseHelper(dbUrl, dbName, collectionName, 'insert', req.body, (err) => {
+    	if (err) throw err;
+		else res.send(req.body.id);
+    });
+});
 app.listen(app.port, () => {
     console.log('Running on port:', app.port);
 });
