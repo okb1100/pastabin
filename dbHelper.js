@@ -3,20 +3,27 @@ const MongoClient = require('mongodb').MongoClient;
 
 module.exports = (url,name,collection,method,data,callback) => {
 	MongoClient.connect(url, (err,cli) => {
-		const db = cli.db(name);
-		const coll = db.collection(collection);
+		if(err){
+			console.error(err.name + " - " + err.message);
+		}
+		else{
+	
+			const db = cli.db(name);
+			const coll = db.collection(collection);
+	
+			if(method == 'getOne'){
+				coll.findOne(data, (err,obj) =>{
+					callback(err,obj);
+				})
+				cli.close();
+			}
+			else if(method == 'insert'){
+				coll.insert(data,(err) => {
+					callback(err);
+				})
+				cli.close();
+			}
+		}
 
-		if(method == 'getOne'){
-			coll.findOne(data, (err,obj) =>{
-				callback(err,obj);
-			})
-			cli.close();
-		}
-		else if(method == 'insert'){
-			coll.insert(data,(err) => {
-				callback(err);
-			})
-			cli.close();
-		}
 	})
 }
