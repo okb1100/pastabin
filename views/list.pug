@@ -1,0 +1,49 @@
+doctype=html
+html(language=en)
+    head
+        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Yet Another PastaBin
+        link(rel="icon", href="/public/favicon.png")
+        link(rel="stylesheet", href="/public/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/public/css/styles.css")
+        link(rel="stylesheet", href="/public/css/zenburn.css")
+        link(rel="stylesheet", href="/public/css/perfect-scrollbar.css")
+        script(src="/public/js/jquery.min.js")
+        script(src="/public/js/popper.min.js")
+        script(src="/public/js/bootstrap.min.js")
+        script(src="/public/js/client.js")
+        script(src="/public/js/highlight.pack.js")
+        script(src="/public/js/perfect-scrollbar.min.js")
+
+    body.bg-dark
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-1
+            a.navbar-brand(href="/") PastaBin
+            button.navbar-toggler.hidden-lg-up(type="button", data-toggle="collapse", data-target="#collapsibleNavId" aria-controls="collapsibleNav" aria-expanded="false")
+                i.fa.fa-bars(aria-hidden="true")
+            div.collapse.navbar-collapse#collapsibleNav
+                ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+                    li.nav-item
+                        a.nav-link(href="/")  Upload
+                    li.nav-item.active
+                        a.nav-link(href="/about")  About
+                
+        .container
+            .row
+                .col-md-12.text-white.text-center
+                    h3 #{list[0].uploader}'s all posts
+                each el, i in list
+                    .col-md-6
+                        .card.bg-dark.text-white.mb-2
+                            .card-header 
+                                  a(href="/" + el.id) ##{i} #{el.title}
+                            .card-body
+                                h3.card-title
+                                p.card-text
+                                    pre(class=el.syntax).hljs.text-white #{el.content.slice(0,100)} ...
+                            .card-footer
+                                span.date #{el.date}
+                                 
+                                span#syntax , #{el.syntax}
+                                    
+                

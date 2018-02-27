@@ -32,12 +32,15 @@ html(language=en)
                 .col-md-3
                     table.table.table-dark.bg-dark
                         tbody
-                            tr
-                                td Title
-                                td #{title}
-                            tr
-                                td Author
-                                td#uploader #{uploader}
+                            if title
+                                tr
+                                    td Title
+                                    td #{title}
+                            if uploader
+                                tr
+                                    td Author
+                                    td#uploader 
+                                        a(href="/u/" + uploader) #{uploader}
                             tr
                                 td Syntax
                                 td#syntax #{syntax}
@@ -67,4 +70,4 @@ html(language=en)
                                     td.lines.text-right.border.border-top-0.border-bottom-0.border-left-0.border-secondary(width="5%")
                                         pre.text-secondary
                                     td.pastaContent.d-block.pl-1
-                                        pre(class=syntax).text-white #{content}
+                                        pre(class=syntax).text-white.hljs #{content}

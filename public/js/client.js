@@ -2,6 +2,9 @@ if (!hljs) var hljs;
 if (!PerfectScrollbar) var PerfectScrollbar;
 
 $(document).ready(() => {
+    $('pre.hljs').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
     /*
     Line counting on post page, perfect until line count exceed the visible lines :(
     if ($('#thePasta').length) {
@@ -21,7 +24,7 @@ $(document).ready(() => {
 
     // These should be wrapped around an isPreview condition
     // date formatting
-    var dateElem = $('#date');
+    var dateElem = $('.date');
     if (dateElem.length > 0) {
         var date = new Date(parseInt(dateElem.html()));
         dateElem.html(date.toLocaleString());
@@ -35,10 +38,6 @@ $(document).ready(() => {
         for (var i = 1; i <= lines; i++) {
             $('td.lines>pre').append(i + '\n');
         }
-        if ($('#syntax').html().length > 0)
-            $('.pastaContent > pre').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
         const ps = new PerfectScrollbar('.pastaCard');
     }
 });

@@ -17,6 +17,14 @@ module.exports = (url,name,collection,method,data,callback) => {
 				})
 				cli.close();
 			}
+			if(method == 'list'){
+
+				coll.find(data).toArray((err, docs) => {
+					callback(err,docs);
+					cli.close();
+				});
+
+			}
 			else if(method == 'insert'){
 				coll.insert(data,(err) => {
 					callback(err);

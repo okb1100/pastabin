@@ -34,6 +34,15 @@ app.get('/:id', (req, res) => {
     });
 });
 
+app.get('/u/:author', (req,res) =>{
+	databaseHelper(dbUrl, dbName, collectionName, 'list', {uploader: req.params.author}, (err,obj) => {
+		if (obj) 
+			res.render('list', {list: obj});
+		else res.sendStatus(404);
+	})
+})
+
+
 app.get('/download/:id', (req,res) => {
 	databaseHelper(dbUrl, dbName, collectionName, 'getOne', {id: req.params.id}, (err,obj) => {
 		if (obj){
