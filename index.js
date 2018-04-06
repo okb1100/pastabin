@@ -4,9 +4,10 @@ var bodyParser = require('body-parser');
 var requestId = require('express-request-id');
 
 var databaseHelper = require('./dbHelper');
-const dbUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
-const dbName = process.env.MONGODB_URI.split("/").pop() || 'pastabin';
-const collectionName = 'docs';
+var dbUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
+if (process.env.MONGODB_URI) var dbName = process.env.MONGODB_URI.split("/").pop()
+else var dbNAme = 'pastabin';
+var collectionName = 'docs';
 
 var path = require('path');
 var app = express();
