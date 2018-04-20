@@ -41,6 +41,11 @@ html(language=en)
                                     td Author
                                     td#uploader 
                                         a(href="/u/" + uploader) #{uploader}
+                            if label
+                                tr
+                                    td Label
+                                    td
+                                        a(href="/label/" + label) #{label}
                             tr
                                 td Syntax
                                 td#syntax #{syntax}

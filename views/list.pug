@@ -31,7 +31,10 @@ html(language=en)
         .container
             .row
                 .col-md-12.text-white.text-center
-                    h3 #{list[0].uploader}'s all posts
+                    if isLabel
+                        h3 Posts labeled as #{list[0].label}
+                    else                
+                        h3 #{list[0].uploader}'s all posts
                 each el, i in list
                     .col-md-6
                         .card.bg-dark.text-white.mb-2

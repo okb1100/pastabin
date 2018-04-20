@@ -46,7 +46,7 @@ app.get('/u/:author', (req,res) =>{
 app.get('/label/:label', (req,res) => {
 	databaseHelper(dbUrl, dbName, collectionName, 'list', {label: req.params.label}, (err,obj) => {
 		if (obj) 
-			res.render('list', {list: obj});
+			res.render('list', {list: obj, isLabel: true});
 		else res.sendStatus(404);
 	})
 });
