@@ -41,8 +41,15 @@ app.get('/u/:author', (req,res) =>{
 			res.render('list', {list: obj});
 		else res.sendStatus(404);
 	})
-})
+});
 
+app.get('/label/:label', (req,res) => {
+	databaseHelper(dbUrl, dbName, collectionName, 'list', {label: req.params.label}, (err,obj) => {
+		if (obj) 
+			res.render('list', {list: obj});
+		else res.sendStatus(404);
+	})
+});
 
 app.get('/download/:id', (req,res) => {
 	databaseHelper(dbUrl, dbName, collectionName, 'getOne', {id: req.params.id}, (err,obj) => {

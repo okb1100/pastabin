@@ -53,7 +53,10 @@ var upload = (title, content) => {
 
     if ($('#uploaderName').val().length > 0)
         Pasta.uploader = $('#uploaderName').val();
-
+    
+    if ($('#label').val().length > 0)
+        Pasta.label = $('#label').val();
+        
     $.ajax({
         method: 'POST',
         url: '/api/uploadPasta',
