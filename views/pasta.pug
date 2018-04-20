@@ -1,78 +1,51 @@
-doctype=html
-html(language=en)
-    head
-        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Yet Another PastaBin
-        link(rel="icon", href="public/favicon.png")
-        link(rel="stylesheet", href="public/css/bootstrap.min.css")
-        link(rel="stylesheet", href="public/css/styles.css")
-        link(rel="stylesheet", href="public/css/zenburn.css")
-        link(rel="stylesheet", href="public/css/perfect-scrollbar.css")
-        script(src="public/js/jquery.min.js")
-        script(src="public/js/popper.min.js")
-        script(src="public/js/bootstrap.min.js")
-        script(src="public/js/client.js")
-        script(src="public/js/highlight.pack.js")
-        script(src="public/js/perfect-scrollbar.min.js")
-    body.bg-dark
-        nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-1
-            a.navbar-brand(href="/") PastaBin
-            button.navbar-toggler.hidden-lg-up(type="button", data-toggle="collapse", data-target="#collapsibleNavId" aria-controls="collapsibleNav" aria-expanded="false")
-                i.fa.fa-bars(aria-hidden="true")
-            div.collapse.navbar-collapse#collapsibleNav
-                ul.navbar-nav.mr-auto.mt-2.mt-lg-0
-                    li.nav-item
-                        a.nav-link(href="/")  Upload
-                    li.nav-item
-                        a.nav-link(href="/about")  About
-                
-        .container-fluid
-            .row
-                .col-md-3
-                    table.table.table-dark.bg-dark
-                        tbody
-                            if title
-                                tr
-                                    td Title
-                                    td #{title}
-                            if uploader
-                                tr
-                                    td Author
-                                    td#uploader 
-                                        a(href="/u/" + uploader) #{uploader}
-                            if label
-                                tr
-                                    td Label
-                                    td
-                                        a(href="/label/" + label) #{label}
+extends layout.pug
+block content
+    .container-fluid
+        .row
+            .col-md-3
+                table.table.table-dark.bg-dark
+                    tbody
+                        if title
                             tr
-                                td Syntax
-                                td#syntax #{syntax}
+                                td Title
+                                td #{title}
+                        if uploader
                             tr
-                                td Date
-                                td.date #{date}
-                    table.table.table-dark.bg-dark
-                        tbody
+                                td Author
+                                td#uploader 
+                                    a(href="/u/" + uploader) #{uploader}
+                        if label
                             tr
+                                td Label
                                 td
-                                    .btn-group(role="group")
-                                        button.btn.btn-secondary(type="button", onClick="copyToClipboard('.pastaContent')") Copy 
-                                        a.btn.btn-secondary(role="button", href="download/" + id) Download
-                            tr
-                                td  
-                                    .btn-group(role="group")
-                                        button.btn.btn-secondary(type="button", onClick="zoom('out')") Zoom Out
-                                        button.btn.btn-secondary(type="button", onClick="zoom('in')") Zoom In
-                            
-                .col-md-9
-                    .card.bg-dark
-                        .card-body.pastaCard.p-0
-                            //h3.card-title #{title} 
-                                small.text-muted - #{id}
-                            p.card-text
-                                table.pastaTable.w-100
-                                    td.lines.text-right.border.border-top-0.border-bottom-0.border-left-0.border-secondary(width="5%")
-                                        pre.text-secondary
-                                    td.pastaContent.d-block.pl-1
-                                        pre(class=syntax).text-white.hljs #{content}
+                                    a(href="/label/" + label) #{label}
+                        tr
+                            td Syntax
+                            td#syntax #{syntax}
+                        tr
+                            td Date
+                            td.date #{date}
+                table.table.table-dark.bg-dark
+                    tbody
+                        tr
+                            td
+                                .btn-group(role="group")
+                                    button.btn.btn-secondary(type="button", onClick="copyToClipboard('.pastaContent')") Copy 
+                                    a.btn.btn-secondary(role="button", href="download/" + id) Download
+                        tr
+                            td  
+                                .btn-group(role="group")
+                                    button.btn.btn-secondary(type="button", onClick="zoom('out')") Zoom Out
+                                    button.btn.btn-secondary(type="button", onClick="zoom('in')") Zoom In
+                        
+            .col-md-9
+                .card.bg-dark
+                    .card-body.pastaCard.p-0
+                        //h3.card-title #{title} 
+                            small.text-muted - #{id}
+                        p.card-text
+                            table.pastaTable.w-100
+                                td.lines.text-right.border.border-top-0.border-bottom-0.border-left-0.border-secondary(width="5%")
+                                    pre.text-secondary
+                                td.pastaContent.d-block.pl-1
+                                    pre(class=syntax).text-white.hljs #{content}

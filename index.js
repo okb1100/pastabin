@@ -6,7 +6,7 @@ var requestId = require('express-request-id');
 var databaseHelper = require('./dbHelper');
 var dbUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
 if (process.env.MONGODB_URI) var dbName = process.env.MONGODB_URI.split("/").pop()
-else var dbNAme = 'pastabin';
+else var dbName = 'pastabin';
 var collectionName = 'docs';
 
 var path = require('path');
