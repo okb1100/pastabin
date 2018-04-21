@@ -1,9 +1,16 @@
-if (!hljs) var hljs;
-if (!PerfectScrollbar) var PerfectScrollbar;
+import $ from 'jquery';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/styles.css';
+import './css/zenburn.css';
+import './css/perfect-scrollbar.css';
+//import './css/font-awesome.min.css';
+import PerfectScrollbar from './perfect-scrollbar.min.js';
+import hljs from './highlight.pack.js';
 
 $(document).ready(() => {
     $('pre.hljs').each(function(i, block) {
-        hljs.highlightBlock(block);
+       hljs.highlightBlock(block);
     });
     /*
     Line counting on post page, perfect until line count exceed the visible lines :(
@@ -42,7 +49,7 @@ $(document).ready(() => {
     }
 });
 
-var upload = (title, content) => {
+window.upload = (title, content) => {
     var Pasta = {
         title: title,
         content: content
@@ -76,7 +83,7 @@ var upload = (title, content) => {
     });
 };
 
-var uploadPasta = () => {
+window.uploadPasta = () => {
     var toUpload = null;
     var pastaName = $('#pastaName').val();
     if (
@@ -99,7 +106,7 @@ var uploadPasta = () => {
     }
 };
 
-var copyToClipboard = elementToCopy => {
+window.copyToClipboard = elementToCopy => {
     elementToCopy = $(elementToCopy);
     if (elementToCopy.prop('tagName') != 'INPUT') {
         var $temp = $('<textarea>');
@@ -114,7 +121,7 @@ var copyToClipboard = elementToCopy => {
     alert('Copied to clipboard!');
 };
 
-var zoom = type => {
+window.zoom = type => {
     var fontSize = parseInt($('.pastaTable').css('font-size'));
     if (type == 'in' && fontSize < 22) {
         $('.pastaTable').css('font-size', fontSize + 2);
