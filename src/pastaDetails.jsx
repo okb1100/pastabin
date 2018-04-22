@@ -1,5 +1,58 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
+
+function DetailsRow(props) {
+  /*  Too many conditions */
+  if (props.link && props.value) {
+    return (
+      <tr>
+        <td>{props.name}</td>
+        <td>
+          <a href={props.link}>{props.value}</a>
+        </td>
+      </tr>
+    );
+  }
+  if (!props.link && props.value) {
+    return (
+      <tr>
+        <td>{props.name}</td>
+        <td>{props.value}</td>
+      </tr>
+    );
+  }
+  return null;
+}
+
+DetailsRow.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.string,
+  link: PropTypes.string,
+};
+
+DetailsRow.defaultProps = {
+  name: null,
+  value: null,
+  link: null,
+};
+
+function DateRow(props) {
+  return (
+    <tr>
+      <td>Date</td>
+      <td>{new Date(props.date).toLocaleDateString()}</td>
+    </tr>
+  );
+}
+
+DateRow.propTypes = {
+  date: PropTypes.number,
+};
+
+DateRow.defaultProps = {
+  date: null,
+};
 
 export default class PastaDetails extends React.Component {
   constructor(props) {
@@ -23,39 +76,19 @@ export default class PastaDetails extends React.Component {
     return (
       <table className="table table-dark bg-dark">
         <tbody>
-          {/* Fix this. Create a component and call that. */}
-          if({this.state.details.title}){
-            <tr>
-              <td> Title </td>
-              <td> {this.state.details.title} </td>
-            </tr>
-          }
-          if({this.state.details.uploader}){
-            <tr>
-              <td> Author </td>
-              <td>
-                {' '}
-                <a href={`/u/${this.state.details.uploader}`}>{this.state.details.uploader}</a>{' '}
-              </td>
-            </tr>
-          }
-          if({this.state.details.label}){
-            <tr>
-              <td> Label </td>
-              <td>
-                {' '}
-                <a href={`/label/${this.state.details.label}`}>{this.state.details.label}</a>{' '}
-              </td>
-            </tr>
-          }
-          <tr>
-            <td>Syntax</td>
-            <td>{this.state.details.syntax}</td>
-          </tr>
-          <tr>
-            <td>Date</td>
-            <td className="date">{this.state.details.date}</td>
-          </tr>
+          <DetailsRow name="Title" value={this.state.details.title} />
+          <DetailsRow
+            name="Author"
+            value={this.state.details.uploader}
+            link={`/u/${this.state.details.uploader}`}
+          />
+          <DetailsRow
+            name="Label"
+            value={this.state.details.label}
+            link={`/label/${this.state.details.label}`}
+          />
+          <DetailsRow name="Syntax" value={this.state.details.syntax} />
+          <DateRow date={this.state.details.date} />
         </tbody>
       </table>
     );

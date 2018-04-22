@@ -60,13 +60,6 @@ $(document).ready(() => {
     hljs.highlightBlock(block);
   });
 
-  // date formatting
-  const dateElem = $('.date');
-  if (dateElem.length > 0) {
-    const date = new Date(parseInt(dateElem.html(), 10));
-    dateElem.html(date.toLocaleString());
-  }
-
   // line counting
   if ($('.pastaContent').length > 0) {
     const lines = $('.pastaContent')
