@@ -44,11 +44,26 @@ module.exports = {
     filename: "bundle.js",
     path: path.join(path.resolve(__dirname, "public"), "js")
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {loader: 'babel-loader'}
       }
     ]
   },

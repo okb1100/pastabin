@@ -1,12 +1,14 @@
 .pastaCard {
-    position: relative;
-    overflow: hidden;
-    height: 90vh;
-}
-.pre{
-    white-space: pre-wrap;
+  position: relative;
+  overflow: hidden;
+  height: 90vh;
 }
 
-.card-header a, .card-header a:visited{
-    color: #f2f1ef;
+.pre {
+  white-space: pre-wrap;
+}
+
+.card-header a,
+.card-header a:visited {
+  color: #f2f1ef;
 }
