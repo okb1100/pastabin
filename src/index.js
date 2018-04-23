@@ -1,5 +1,5 @@
 import $ from 'jquery';
-//import 'bootstrap';
+// import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'perfect-scrollbar/css/perfect-scrollbar.css';
 // import PerfectScrollbar from 'perfect-scrollbar';
@@ -56,10 +56,11 @@ languages.forEach((langName) => {
 });
 */
 $(document).ready(() => {
+  /*
   $('pre.hljs').each((i, block) => {
-    //hljs.highlightBlock(block);
+    hljs.highlightBlock(block);
   });
-
+*/
   // line counting
   if ($('.pastaContent').length > 0) {
     const lines = $('.pastaContent')
@@ -90,10 +91,10 @@ window.upload = (title, content) => {
     processData: false,
     data: JSON.stringify(Pasta),
     contentType: 'application/json',
-    success: function(data) {
+    success: (data) => {
       $('#submission').fadeOut(300);
       $('.alert').fadeOut(300);
-      $('#sendSucceeded .alert-link').attr('href', '/' + data);
+      $('#sendSucceeded .alert-link').attr('href', `/${data}`);
       $('#sendSucceeded #copyLink').val(window.location.href + data);
       $('#sendSucceeded').fadeIn(300);
     },

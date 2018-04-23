@@ -1,0 +1,12 @@
+.notify {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  display: block;
+}
+
+.notify > .alert {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
