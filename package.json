@@ -15,7 +15,9 @@
     "type": "git",
     "url": "https://github.com/okb1100/yet-another-pastabin"
   },
-  "keywords": ["pastabin"],
+  "keywords": [
+    "pastabin"
+  ],
   "author": "okb1100",
   "license": "MIT",
   "dependencies": {
@@ -32,6 +34,7 @@
     "prop-types": "^15.6.1",
     "pug": "^2.0.0-rc.4",
     "react": "^16.3.2",
+    "react-clipboard.js": "^1.1.3",
     "react-dom": "^16.3.2"
   },
   "devDependencies": {

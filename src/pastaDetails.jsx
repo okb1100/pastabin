@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Clipboard from 'react-clipboard.js';
 
 function DetailsRow(props) {
   /*  Too many conditions */
@@ -73,24 +74,45 @@ export default class PastaDetails extends React.Component {
   }
 
   render() {
-    return (
-      <table className="table table-dark bg-dark">
-        <tbody>
-          <DetailsRow name="Title" value={this.state.details.title} />
-          <DetailsRow
-            name="Author"
-            value={this.state.details.uploader}
-            link={`/u/${this.state.details.uploader}`}
-          />
-          <DetailsRow
-            name="Label"
-            value={this.state.details.label}
-            link={`/label/${this.state.details.label}`}
-          />
-          <DetailsRow name="Syntax" value={this.state.details.syntax} />
-          <DateRow date={this.state.details.date} />
-        </tbody>
-      </table>
-    );
+    if (this.state.details.content) {
+      return (
+        <div>
+          <table className="table table-dark bg-dark">
+            <tbody>
+              <DetailsRow name="Title" value={this.state.details.title} />
+              <DetailsRow
+                name="Author"
+                value={this.state.details.uploader}
+                link={`/u/${this.state.details.uploader}`}
+              />
+              <DetailsRow
+                name="Label"
+                value={this.state.details.label}
+                link={`/label/${this.state.details.label}`}
+              />
+              <DetailsRow name="Syntax" value={this.state.details.syntax} />
+              <DateRow date={this.state.details.date} />
+            </tbody>
+          </table>
+
+          <div className="btn-group" role="group">
+            <Clipboard
+              className="btn btn-secondary"
+              data-clipboard-text={this.state.details.content}
+            >
+              Copy
+            </Clipboard>
+            <a
+              className="btn btn-secondary"
+              role="button"
+              href={`/download/${this.state.details.id}`}
+            >
+              Download
+            </a>
+          </div>
+        </div>
+      );
+    }
+    return null;
   }
 }

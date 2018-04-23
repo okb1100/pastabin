@@ -112,21 +112,6 @@ window.uploadPasta = () => {
   }
 };
 
-window.copyToClipboard = (elementToCopy) => {
-  elementToCopy = $(elementToCopy);
-  if (elementToCopy.prop('tagName') !== 'INPUT') {
-    const $temp = $('<textarea>');
-    $('body').append($temp);
-    $temp.val(elementToCopy.prop('innerText')).select();
-    document.execCommand('copy');
-    $temp.remove();
-  } else {
-    elementToCopy.select();
-    document.execCommand('copy');
-  }
-  alert('Copied to clipboard!');
-};
-
 window.zoom = (type) => {
   const fontSize = parseInt($('.pastaTable').css('font-size'), 10);
   if (type === 'in' && fontSize < 22) {
