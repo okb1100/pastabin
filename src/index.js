@@ -1,10 +1,10 @@
 import $ from 'jquery';
-import 'bootstrap';
+//import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
-import PerfectScrollbar from 'perfect-scrollbar';
-import hljs from 'highlight.js/lib/highlight';
-import './css/zenburn-custom.css';
+// import 'perfect-scrollbar/css/perfect-scrollbar.css';
+// import PerfectScrollbar from 'perfect-scrollbar';
+// import hljs from 'highlight.js/lib/highlight';
+// import './css/zenburn-custom.css';
 import './css/styles.css';
 import App from './reactApp';
 
@@ -49,15 +49,15 @@ const languages = [
   'brainfuck',
   'coffeescript',
 ];
-
+/*
 languages.forEach((langName) => {
   const langModule = require(`highlight.js/lib/languages/${langName}`);
   hljs.registerLanguage(langName, langModule);
 });
-
+*/
 $(document).ready(() => {
   $('pre.hljs').each((i, block) => {
-    hljs.highlightBlock(block);
+    //hljs.highlightBlock(block);
   });
 
   // line counting
@@ -68,7 +68,7 @@ $(document).ready(() => {
     for (let i = 1; i <= lines; i += 1) {
       $('td.lines>pre').append(`${i}\n`);
     }
-    PerfectScrollbar('.pastaCard');
+    // PerfectScrollbar('.pastaCard');
   }
 });
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import Clipboard from 'react-clipboard.js';
 
 function DetailsRow(props) {
@@ -58,54 +57,38 @@ DateRow.defaultProps = {
 export default class PastaDetails extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      details: {},
-    };
-  }
-
-  componentDidMount() {
-    axios(`/api/get${window.location.pathname}`).then((res) => {
-      if (res.status === 200) {
-        const details = res.data;
-        this.setState({ details });
-      }
-    });
   }
 
   render() {
-    if (this.state.details.content) {
+    if (this.props.pasta.content) {
       return (
-        <div>
+        <div className="col-md-3">
           <table className="table table-dark bg-dark">
             <tbody>
-              <DetailsRow name="Title" value={this.state.details.title} />
+              <DetailsRow name="Title" value={this.props.pasta.title} />
               <DetailsRow
                 name="Author"
-                value={this.state.details.uploader}
-                link={`/u/${this.state.details.uploader}`}
+                value={this.props.pasta.uploader}
+                link={`/u/${this.props.pasta.uploader}`}
               />
               <DetailsRow
                 name="Label"
-                value={this.state.details.label}
-                link={`/label/${this.state.details.label}`}
+                value={this.props.pasta.label}
+                link={`/label/${this.props.pasta.label}`}
               />
-              <DetailsRow name="Syntax" value={this.state.details.syntax} />
-              <DateRow date={this.state.details.date} />
+              <DetailsRow name="Syntax" value={this.props.pasta.syntax} />
+              <DateRow date={this.props.pasta.date} />
             </tbody>
           </table>
 
           <div className="btn-group" role="group">
-            <Clipboard
-              className="btn btn-secondary"
-              data-clipboard-text={this.state.details.content}
-            >
+            <Clipboard className="btn btn-secondary" data-clipboard-text={this.props.pasta.content}>
               Copy
             </Clipboard>
             <a
               className="btn btn-secondary"
               role="button"
-              href={`/download/${this.state.details.id}`}
+              href={`/download/${this.props.pasta.id}`}
             >
               Download
             </a>

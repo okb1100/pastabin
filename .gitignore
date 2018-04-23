@@ -70,4 +70,5 @@ typings/
 .history
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
+
 public/js/bundle.js
