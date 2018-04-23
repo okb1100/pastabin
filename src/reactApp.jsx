@@ -46,6 +46,7 @@ class PastaView extends React.Component {
               onExpire={this.notificationExpired}
               time={this.state.notification.time}
               message={this.state.notification.message}
+              timeout={3000}
             />
           )}
           <div className="row">

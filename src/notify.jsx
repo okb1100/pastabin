@@ -23,7 +23,7 @@ class Notify extends React.Component {
       time: Date.now(),
     });
 
-    if (this.state.time > this.props.time + 3000) {
+    if (this.state.time > this.props.time + this.props.timeout) {
       this.expired();
     }
   }
@@ -45,7 +45,11 @@ class Notify extends React.Component {
 Notify.propTypes = {
   message: PropTypes.string.isRequired,
   time: PropTypes.number.isRequired,
+  timeout: PropTypes.number,
   onExpire: PropTypes.func.isRequired,
+};
+Notify.defaultProps = {
+  timeout: 1000,
 };
 
 export default Notify;
