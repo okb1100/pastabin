@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// replace axios.
 import axios from 'axios';
 import PastaDetails from './pastaDetails';
 import ContentDisplay from './contentDisplay';
@@ -10,6 +11,7 @@ class PastaView extends React.Component {
     super(props);
     this.copySuccees = this.copySuccees.bind(this);
     this.notificationExpired = this.notificationExpired.bind(this);
+
     this.state = {
       pasta: {},
       notification: {},
@@ -36,6 +38,7 @@ class PastaView extends React.Component {
   notificationExpired() {
     this.setState({ notification: { message: '' } });
   }
+
   render() {
     if (this.state.hasData) {
       return (

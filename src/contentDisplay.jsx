@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hljs from 'highlight.js/lib/highlight';
-import PerfectScrollbar from 'perfect-scrollbar';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
 import './css/zenburn-custom.css';
 
 const languages = [
@@ -47,27 +45,72 @@ languages.forEach((langName) => {
   hljs.registerLanguage(langName, langModule);
 });
 
+function ZoomButton(props) {
+  return (
+    <div className="btn-group" role="group">
+      <button className="btn btn-secondary" onClick={props.zoomInHandler}>
+        Zoom in
+      </button>
+      <button className="btn btn-secondary" onClick={props.zoomOutHandler}>
+        Zoom out
+      </button>
+    </div>
+  );
+}
+ZoomButton.propTypes = {
+  zoomInHandler: PropTypes.func.isRequired,
+  zoomOutHandler: PropTypes.func.isRequired,
+};
+
 class ContentDisplay extends React.Component {
   constructor(props) {
     super(props);
+
     this.ref = React.createRef();
+    this.state = {
+      zoomLevel: 16,
+    };
+
+    this.zoomInHandler = this.zoomInHandler.bind(this);
+    this.zoomOutHandler = this.zoomOutHandler.bind(this);
   }
+
   componentDidMount() {
-    this.ps = new PerfectScrollbar(this.ref.current);
     hljs.highlightBlock(this.ref.current);
   }
-  componentWillUnmount() {
-    this.ps.destroy();
-    this.ps = null;
+
+  zoomInHandler() {
+    this.setState({ zoomLevel: this.state.zoomLevel + 2 });
+  }
+  zoomOutHandler() {
+    this.setState({ zoomLevel: this.state.zoomLevel - 2 });
   }
   render() {
     const lines = this.props.content.split('\n').map((val, i) => `${i + 1}\n`);
     return (
       <div className="col-md-9">
         <div className="card bg-dark">
-          <div className="card-body pastaCard p-0" ref={this.ref}>
-            <table className="pastaTable w-100">
-              <tbody>
+          <div className="btn-group" role="group">
+            <button
+              className="btn btn-secondary"
+              onClick={(e) => {
+                this.zoomInHandler(e);
+              }}
+            >
+              Zoom in
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={(e) => {
+                this.zoomOutHandler(e);
+              }}
+            >
+              Zoom out
+            </button>
+          </div>
+          <div className="card-body pastaCard p-0">
+            <table className="pastaTable w-100" style={{ fontSize: this.state.zoomLevel }}>
+              <tbody ref={this.ref}>
                 <tr>
                   {/* What the fuck? */}
                   <td

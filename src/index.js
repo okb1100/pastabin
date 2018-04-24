@@ -47,12 +47,3 @@ window.uploadPasta = () => {
     window.upload(pastaName, $('#thePasta').val());
   }
 };
-
-window.zoom = (type) => {
-  const fontSize = parseInt($('.pastaTable').css('font-size'), 10);
-  if (type === 'in' && fontSize < 22) {
-    $('.pastaTable').css('font-size', fontSize + 2);
-  } else if (type === 'out' && fontSize > 12) {
-    $('.pastaTable').css('font-size', fontSize - 2);
-  }
-};

@@ -1,7 +1,7 @@
 .pastaCard {
   position: relative;
-  overflow: hidden;
-  height: 90vh;
+  overflow: scroll;
+  height: 80vh;
 }
 
 .pre {
