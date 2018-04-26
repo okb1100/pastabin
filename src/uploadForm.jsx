@@ -57,7 +57,8 @@ class UploadForm extends React.Component {
         .post('api/uploadPasta', this.state.pasta)
         .then((res) => {
           // Notify: success
-          this.props.onNotify(res.data, 'success', 3600 * 60);
+          const link = `<a href="/${res.data}"}> ${window.location.href + res.data} </a>`;
+          this.props.onNotify(`Your submission is hosted on ${link}.`, 'success', 3600 * 60);
         })
         .catch((err) => {
           // Notify: err

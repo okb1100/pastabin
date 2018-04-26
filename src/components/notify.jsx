@@ -35,15 +35,17 @@ class Notify extends React.Component {
   render() {
     return (
       <div className="row notify">
-        <div className={`col-md-6 alert alert-${this.props.type}`} role="alert">
-          {this.props.message}
-        </div>
+        <div
+          dangerouslySetInnerHTML={this.props.message}
+          className={`col-md-6 alert alert-${this.props.type}`}
+          role="alert"
+        />
       </div>
     );
   }
 }
 Notify.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.shape({ __html: PropTypes.string }).isRequired,
   type: PropTypes.string,
   time: PropTypes.number.isRequired,
   timeout: PropTypes.number,
