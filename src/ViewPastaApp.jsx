@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // replace axios.
 import axios from 'axios';
+import PastabinConfig from './pastabinConfig';
 import PastaDetails from './pastaDetails';
-import ContentDisplay from './contentDisplay';
-import Notify from './notify';
+import ContentDisplay from './components/contentDisplay';
+import Notify from './components/notify';
+import Navbar from './components/navbar';
 
 class PastaView extends React.Component {
   constructor(props) {
@@ -42,19 +44,21 @@ class PastaView extends React.Component {
   render() {
     if (this.state.hasData) {
       return (
-        <div className="container-fluid">
-          {/* Should move this logic into the component */}
-          {this.state.notification.message && (
-            <Notify
-              onExpire={this.notificationExpired}
-              time={this.state.notification.time}
-              message={this.state.notification.message}
-              timeout={3000}
-            />
-          )}
-          <div className="row">
-            <PastaDetails copySuccess={this.copySuccees} pasta={this.state.pasta} />
-            <ContentDisplay content={this.state.pasta.content} syntax={this.state.pasta.syntax} />
+        <div>
+          <Navbar items={PastabinConfig.navbar.items} brand={PastabinConfig.navbar.brand} />
+          <div className="container-fluid">
+            {this.state.notification.message && (
+              <Notify
+                onExpire={this.notificationExpired}
+                time={this.state.notification.time}
+                message={this.state.notification.message}
+                timeout={3000}
+              />
+            )}
+            <div className="row">
+              <PastaDetails copySuccess={this.copySuccees} pasta={this.state.pasta} />
+              <ContentDisplay content={this.state.pasta.content} syntax={this.state.pasta.syntax} />
+            </div>
           </div>
         </div>
       );
@@ -63,8 +67,8 @@ class PastaView extends React.Component {
   }
 }
 
-function App() {
-  ReactDOM.render(<PastaView />, document.getElementById('pastaRoot'));
+function Render(element) {
+  ReactDOM.render(<PastaView />, document.getElementById(element.id));
 }
 
-export default App;
+export default Render;

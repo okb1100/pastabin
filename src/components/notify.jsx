@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './css/notify.css';
+import '../css/notify.css';
 
 class Notify extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class Notify extends React.Component {
   render() {
     return (
       <div className="row notify">
-        <div className="col-md-6 alert alert-secondary" role="alert">
+        <div className={`col-md-6 alert alert-${this.props.type}`} role="alert">
           {this.props.message}
         </div>
       </div>
@@ -44,11 +44,14 @@ class Notify extends React.Component {
 }
 Notify.propTypes = {
   message: PropTypes.string.isRequired,
+  type: PropTypes.string,
   time: PropTypes.number.isRequired,
   timeout: PropTypes.number,
   onExpire: PropTypes.func.isRequired,
 };
+
 Notify.defaultProps = {
+  type: 'info',
   timeout: 1000,
 };
 

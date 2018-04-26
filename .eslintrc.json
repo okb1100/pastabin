@@ -6,7 +6,7 @@
   },
   "plugins": ["react", "jquery", "prettier"],
   "rules": {
-    "react/jsxfilename-extension": "off",
+    "arrow-parens": "off",
     "prettier/prettier": [
       "error",
       { "singleQuote": true, "printWidth": 100, "trailingComma": "all", "arrowParens": "always" }

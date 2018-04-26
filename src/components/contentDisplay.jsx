@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hljs from 'highlight.js/lib/highlight';
-import './css/zenburn-custom.css';
+import '../css/zenburn-custom.css';
 
 const languages = [
   'actionscript',
