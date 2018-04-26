@@ -1,0 +1,14 @@
+.pastaCard {
+  position: relative;
+  overflow: scroll;
+  height: 80vh;
+}
+
+.pre {
+  white-space: pre-wrap;
+}
+
+.card-header a,
+.card-header a:visited {
+  color: #f2f1ef;
+}

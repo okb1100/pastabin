@@ -1,0 +1,8 @@
+{
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 100,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always"
+}
