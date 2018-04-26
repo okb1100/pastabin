@@ -14,16 +14,14 @@ class TextInput extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor={this.props.id}>
-          {this.props.label}
-          <input
-            type="text"
-            className="form-control bg-dark text-white"
-            id={this.props.id}
-            placeholder={this.props.placeholder}
-            onChange={(e) => this.handleChange(this.props.id, e)}
-          />
-        </label>
+        {this.props.label}
+        <input
+          type="text"
+          className="form-control bg-dark text-white"
+          id={this.props.id}
+          placeholder={this.props.placeholder}
+          onChange={(e) => this.handleChange(this.props.id, e)}
+        />
       </div>
     );
   }

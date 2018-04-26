@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextInput from './components/textInput';
+import SyntaxSelector from './components/syntaxSelector';
 
 function validateContent(content) {
   if (content.length < 15) {
@@ -20,7 +21,7 @@ class UploadForm extends React.Component {
         author: '',
         label: '',
         content: '',
-        // syntax: '',
+        syntax: '',
       },
     };
     this.uploadPasta = this.uploadPasta.bind(this);
@@ -29,7 +30,7 @@ class UploadForm extends React.Component {
 
   onChangeHandler(id, val) {
     /* A different approach required */
-    const pasta = this.state.pasta;
+    const { pasta } = this.state;
     switch (id) {
       case 'ptitle':
         pasta.title = val;
@@ -43,7 +44,9 @@ class UploadForm extends React.Component {
       case 'pcontent':
         pasta.content = val;
         break;
-
+      case 'psyntax':
+        pasta.syntax = val;
+        break;
       default:
         return;
     }
@@ -57,15 +60,24 @@ class UploadForm extends React.Component {
         .post('api/uploadPasta', this.state.pasta)
         .then((res) => {
           // Notify: success
-          const link = `<a href="/${res.data}"}> ${window.location.href + res.data} </a>`;
-          this.props.onNotify(`Your submission is hosted on ${link}.`, 'success', 3600 * 60);
+          const link = (
+            <a className="alert-link" href={`/${res.data}`}>
+              {' '}
+              {window.location.href + res.data}{' '}
+            </a>
+          );
+          this.props.onNotify(
+            <span>Your submission is hosted on {link}.</span>,
+            'success',
+            3600 * 60,
+          );
         })
         .catch((err) => {
           // Notify: err
           this.props.onNotify(err.message, 'danger');
         });
     } else {
-      this.props.onNotify('Blank submissions are not allowed. Please fill in the textbox.', 'info');
+      this.props.onNotify('Blank submissions are not allowed. Please fill in the textbox.');
     }
   }
   render() {
@@ -110,6 +122,7 @@ class UploadForm extends React.Component {
                 placeholder="Uploader name(optional)"
                 id="pauthor"
               />
+              <SyntaxSelector id="psyntax" onChange={this.onChangeHandler} />
               <TextInput
                 onChange={this.onChangeHandler}
                 label="Post label"

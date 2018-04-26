@@ -38,7 +38,7 @@ class UploadApp extends React.Component {
               onExpire={this.notificationExpired}
               type={this.state.notification.type}
               time={this.state.notification.time}
-              message={{ __html: this.state.notification.message }}
+              message={this.state.notification.message}
               timeout={this.state.notification.timeout}
             />
           )}
