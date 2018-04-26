@@ -1,3 +1,4 @@
+.vscode
 # Created by https://www.gitignore.io/api/node,visualstudiocode
 
 ### Node ###
@@ -70,5 +71,3 @@ typings/
 .history
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
-
-public/js/bundle.js

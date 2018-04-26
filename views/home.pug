@@ -10,4 +10,30 @@ block content
                     span.input-group-btn
                         button.btn.btn-secondary(type="button", onClick="copyToClipboard('#copyLink')") Copy
                     input.form-control.bg-dark.text-white#copyLink(type="text")
-        #submission
+        .row#submission
+            .col-md-8
+                .card.mb-5.bg-dark.text-white
+                    .card-body
+                        .form-group
+                            label(for="thePasta") Paste your content below
+                            textarea.form-control.bg-dark.text-white#thePasta(rows="10", required)
+                        
+                        //.form-group
+                            label(for="fileInput") Or upload a file below
+                            input.form-control.bg-dark.text-white#filePasta(type="file")
+                        
+                    .card-footer
+                        button.btn.btn-secondary.btn-lg(type="button", onClick="uploadPasta();") Send
+            .col-md-4
+                .card.bg-dark.text-white
+                    .card-body
+                        .form-group
+                            label(for="pastaName") Title
+                            input.form-control.bg-dark.text-white#pastaName(type="text", placeholder="Title(optional)")
+                        include syntaxSelector.pug
+                        .form-group
+                            label(for="uploaderName") Uploader name (optional)
+                            input.form-control.bg-dark.text-white#uploaderName(type="text", placeholder="Uploader Name")       
+                        .form-group
+                            label(for="label") Label (optional)
+                            input.form-control.bg-dark.text-white#label(type="text", placeholder="Post Label")

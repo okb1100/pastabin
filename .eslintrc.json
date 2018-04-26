@@ -1,15 +1,25 @@
 {
-  "extends": "airbnb",
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "plugins": ["react", "jquery", "prettier"],
-  "rules": {
-    "arrow-parens": "off",
-    "prettier/prettier": [
-      "error",
-      { "singleQuote": true, "printWidth": 100, "trailingComma": "all", "arrowParens": "always" }
-    ]
-  }
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jquery": true
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "off",
+        "constructor-super": "warn",
+        "valid-typeof": "warn"
+    },
+    "plugins": ["jquery"]
 }

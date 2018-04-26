@@ -1,3 +1,51 @@
 extends layout.pug
 block content
-    #pastaRoot
+    .container-fluid
+        .row
+            .col-md-3
+                table.table.table-dark.bg-dark
+                    tbody
+                        if title
+                            tr
+                                td Title
+                                td #{title}
+                        if uploader
+                            tr
+                                td Author
+                                td#uploader 
+                                    a(href="/u/" + uploader) #{uploader}
+                        if label
+                            tr
+                                td Label
+                                td
+                                    a(href="/label/" + label) #{label}
+                        tr
+                            td Syntax
+                            td#syntax #{syntax}
+                        tr
+                            td Date
+                            td.date #{date}
+                table.table.table-dark.bg-dark
+                    tbody
+                        tr
+                            td
+                                .btn-group(role="group")
+                                    button.btn.btn-secondary(type="button", onClick="copyToClipboard('.pastaContent')") Copy 
+                                    a.btn.btn-secondary(role="button", href="download/" + id) Download
+                        tr
+                            td  
+                                .btn-group(role="group")
+                                    button.btn.btn-secondary(type="button", onClick="zoom('out')") Zoom Out
+                                    button.btn.btn-secondary(type="button", onClick="zoom('in')") Zoom In
+                        
+            .col-md-9
+                .card.bg-dark
+                    .card-body.pastaCard.p-0
+                        //h3.card-title #{title} 
+                            small.text-muted - #{id}
+                        p.card-text
+                            table.pastaTable.w-100
+                                td.lines.text-right.border.border-top-0.border-bottom-0.border-left-0.border-secondary(width="5%")
+                                    pre.text-secondary
+                                td.pastaContent.d-block.pl-1
+                                    pre(class=syntax).text-white.hljs #{content}
