@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // replace axios.
 import axios from 'axios';
-import PastabinConfig from './pastabinConfig';
-import PastaDetails from './pastaDetails';
+import PastaDetails from './components/pastaDetails';
 import ContentDisplay from './components/contentDisplay';
 import Notify from './components/notify';
 import Navbar from './components/navbar';
+
+const { navbarConfig } = require('./pastabinConfig');
 
 class PastaView extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class PastaView extends React.Component {
     if (this.state.hasData) {
       return (
         <div>
-          <Navbar items={PastabinConfig.navbar.items} brand={PastabinConfig.navbar.brand} />
+          <Navbar items={navbarConfig.items} brand={navbarConfig.brand} />
           <div className="container-fluid">
             {this.state.notification.message && (
               <Notify

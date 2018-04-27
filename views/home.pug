@@ -1,13 +1,3 @@
 extends layout.pug
 block content
-    .container
-        .row
-            .col-md-6.mx-auto.alert.alert-danger.text-center#sendError(role="alert" style="display:none")
-            .col-md-6.mx-auto.alert.alert-success.text-center#sendSucceeded(role="alert" style="display:none")
-                p.mb-2 Your pasta has successfully been sent. 
-                    a.alert-link(href="") See it here.
-                .input-group
-                    span.input-group-btn
-                        button.btn.btn-secondary(type="button", onClick="copyToClipboard('#copyLink')") Copy
-                    input.form-control.bg-dark.text-white#copyLink(type="text")
-        #submission
+    #submission

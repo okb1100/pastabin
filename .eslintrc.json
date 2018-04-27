@@ -4,7 +4,7 @@
     "browser": true,
     "node": true
   },
-  "plugins": ["react", "jquery", "prettier"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "arrow-parens": "off",
     "prettier/prettier": [

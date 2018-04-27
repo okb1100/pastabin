@@ -3,43 +3,9 @@ import PropTypes from 'prop-types';
 import hljs from 'highlight.js/lib/highlight';
 import '../css/zenburn-custom.css';
 
-const languages = [
-  'actionscript',
-  'apache',
-  'autohotkey',
-  'bash',
-  'basic',
-  'cs',
-  'cpp',
-  'css',
-  'delphi',
-  'diff',
-  'dockerfile',
-  'go',
-  'gradle',
-  'xml',
-  'http',
-  'ini',
-  'json',
-  'java',
-  'javascript',
-  'kotlin',
-  'lua',
-  'makefile',
-  'markdown',
-  'nginx',
-  'objectivec',
-  'php',
-  'perl',
-  'python',
-  'ruby',
-  'rust',
-  'sql',
-  'swift',
-  'brainfuck',
-  'coffeescript',
-];
-languages.forEach((langName) => {
+const { languagesSupported } = require('../pastabinConfig');
+
+languagesSupported.forEach((langName) => {
   // eslint-disable-next-line
   const langModule = require(`highlight.js/lib/languages/${langName}`);
   hljs.registerLanguage(langName, langModule);

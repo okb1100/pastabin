@@ -1,5 +1,5 @@
 const config = {
-  navbar: {
+  navbarConfig: {
     brand: 'PastaBin',
     items: [
       {
@@ -12,6 +12,42 @@ const config = {
       },
     ],
   },
+  languagesSupported: [
+    'actionscript',
+    'apache',
+    'autohotkey',
+    'bash',
+    'basic',
+    'cs',
+    'cpp',
+    'css',
+    'delphi',
+    'diff',
+    'dockerfile',
+    'go',
+    'gradle',
+    'xml',
+    'http',
+    'ini',
+    'json',
+    'java',
+    'javascript',
+    'kotlin',
+    'lua',
+    'makefile',
+    'markdown',
+    'nginx',
+    'objectivec',
+    'php',
+    'perl',
+    'python',
+    'ruby',
+    'rust',
+    'sql',
+    'swift',
+    'brainfuck',
+    'coffeescript',
+  ],
 };
 
-export default config;
+module.exports = config;

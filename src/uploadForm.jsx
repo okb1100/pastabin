@@ -60,21 +60,25 @@ class UploadForm extends React.Component {
         .post('api/uploadPasta', this.state.pasta)
         .then((res) => {
           // Notify: success
-          const link = (
-            <a className="alert-link" href={`/${res.data}`}>
-              {' '}
-              {window.location.href + res.data}{' '}
-            </a>
-          );
-          this.props.onNotify(
-            <span>Your submission is hosted on {link}.</span>,
-            'success',
-            3600 * 60,
-          );
+          if (res.status === 200) {
+            const link = (
+              <a className="alert-link" href={`/${res.data}`}>
+                {' '}
+                {window.location.href + res.data}{' '}
+              </a>
+            );
+            this.props.onNotify(
+              <span>Your submission is hosted on {link}.</span>,
+              'success',
+              3600 * 60,
+            );
+          } else {
+            this.props.onNotify(<span>An error occurred. Try again later...</span>, 'danger', 3600);
+          }
         })
         .catch((err) => {
           // Notify: err
-          this.props.onNotify(err.message, 'danger');
+          this.props.onNotify(err.message, 'danger', 3600);
         });
     } else {
       this.props.onNotify('Blank submissions are not allowed. Please fill in the textbox.');

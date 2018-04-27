@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const { languagesSupported } = require('../pastabinConfig');
+
+languagesSupported.unshift('Plain Text');
 class SyntaxSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -10,43 +13,7 @@ class SyntaxSelector extends React.Component {
     this.props.onChange(id, e.target.value);
   }
   render() {
-    const languages = [
-      'Plain Text',
-      'actionscript',
-      'apache',
-      'autohotkey',
-      'bash',
-      'basic',
-      'cs',
-      'cpp',
-      'css',
-      'delphi',
-      'diff',
-      'dockerfile',
-      'go',
-      'gradle',
-      'xml',
-      'http',
-      'ini',
-      'json',
-      'java',
-      'javascript',
-      'kotlin',
-      'lua',
-      'makefile',
-      'markdown',
-      'nginx',
-      'objectivec',
-      'php',
-      'perl',
-      'python',
-      'ruby',
-      'rust',
-      'sql',
-      'swift',
-      'brainfuck',
-      'coffeescript',
-    ].map((lang) => (
+    const languages = languagesSupported.map((lang) => (
       <option key={lang} value={lang}>
         {lang}
       </option>
@@ -56,6 +23,7 @@ class SyntaxSelector extends React.Component {
       <div className="form-group">
         Select syntax (optional)
         <select
+          value="Plain Text"
           onChange={(e) => this.handleChange(this.props.id, e)}
           id={this.props.id}
           className="form-control bg-dark text-white"

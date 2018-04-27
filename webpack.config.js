@@ -1,81 +1,43 @@
-const path = require("path");
-const webpack = require("webpack");
-//TODO: Fix this.
-const hljsLanguages = [
-  "actionscript",
-  "apache",
-  "autohotkey",
-  "bash",
-  "basic",
-  "cs",
-  "cpp",
-  "css",
-  "delphi",
-  "diff",
-  "dockerfile",
-  "go",
-  "gradle",
-  "xml",
-  "http",
-  "ini",
-  "json",
-  "java",
-  "javascript",
-  "kotlin",
-  "lua",
-  "makefile",
-  "markdown",
-  "nginx",
-  "objectivec",
-  "php",
-  "perl",
-  "python",
-  "ruby",
-  "rust",
-  "sql",
-  "swift",
-  "brainfuck",
-  "coffeescript"
-];
+const path = require('path');
+const webpack = require('webpack');
+// TODO: Fix this.
+
+const hljsLanguages = require('./src/pastabinConfig').languagesSupported;
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    filename: "bundle.js",
-    path: path.join(path.resolve(__dirname, "public"), "js")
+    filename: 'bundle.js',
+    path: path.join(path.resolve(__dirname, 'public'), 'js'),
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader'
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {loader: 'babel-loader'}
-      }
-    ]
+        use: { loader: 'babel-loader' },
+      },
+    ],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    }),
     new webpack.ContextReplacementPlugin(
       /highlight\.js\/lib\/languages$/,
-      new RegExp(`^./(${hljsLanguages.join("|")})$`)
-    )
+      new RegExp(`^./(${hljsLanguages.join('|')})$`),
+    ),
   ],
-  mode: "none"
+  mode: 'none',
 };

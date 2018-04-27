@@ -84,8 +84,10 @@ app.post('/api/uploadPasta', (req, res) => {
   req.body.date = Date.now();
 
   databaseHelper(dbUrl, dbName, collectionName, 'insert', req.body, (err) => {
-    if (err) throw err;
-    else res.send(req.body.id);
+    if (err) {
+      res.sendStatus(500);
+      res.end();
+    } else res.send(req.body.id);
   });
 });
 app.listen(app.port, () => {

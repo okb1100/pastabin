@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // replace axios.
-import PastabinConfig from './pastabinConfig';
 import Notify from './components/notify';
 import Navbar from './components/navbar';
 import UploadForm from './uploadForm';
+
+const { navbarConfig } = require('./pastabinConfig');
 
 class UploadApp extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class UploadApp extends React.Component {
   render() {
     return (
       <div>
-        <Navbar items={PastabinConfig.navbar.items} brand={PastabinConfig.navbar.brand} />
+        <Navbar items={navbarConfig.items} brand={navbarConfig.brand} />
         <div className="container">
           {this.state.notification.message && (
             <Notify
