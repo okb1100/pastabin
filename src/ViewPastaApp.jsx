@@ -58,7 +58,11 @@ class PastaView extends React.Component {
             )}
             <div className="row">
               <PastaDetails copySuccess={this.copySuccees} pasta={this.state.pasta} />
-              <ContentDisplay content={this.state.pasta.content} syntax={this.state.pasta.syntax} />
+              <ContentDisplay
+                className="col-md-9"
+                content={this.state.pasta.content}
+                syntax={this.state.pasta.syntax}
+              />
             </div>
           </div>
         </div>

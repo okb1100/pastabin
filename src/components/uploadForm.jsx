@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import TextInput from './components/textInput';
-import SyntaxSelector from './components/syntaxSelector';
+import TextInput from './textInput';
+import SyntaxSelector from './syntaxSelector';
 
 function validateContent(content) {
   if (content.length < 15) {
@@ -63,8 +63,7 @@ class UploadForm extends React.Component {
           if (res.status === 200) {
             const link = (
               <a className="alert-link" href={`/${res.data}`}>
-                {' '}
-                {window.location.href + res.data}{' '}
+                {window.location.href + res.data}
               </a>
             );
             this.props.onNotify(

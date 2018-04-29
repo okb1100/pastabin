@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Clipboard from 'react-clipboard.js';
+import DateView from './dateView';
 
 function DetailsRow(props) {
   /*  Too many conditions */
@@ -27,7 +28,7 @@ function DetailsRow(props) {
 
 DetailsRow.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   link: PropTypes.string,
 };
 
@@ -35,23 +36,6 @@ DetailsRow.defaultProps = {
   name: null,
   value: null,
   link: null,
-};
-
-function DateRow(props) {
-  return (
-    <tr>
-      <td>Date</td>
-      <td>{new Date(props.date).toLocaleDateString()}</td>
-    </tr>
-  );
-}
-
-DateRow.propTypes = {
-  date: PropTypes.number,
-};
-
-DateRow.defaultProps = {
-  date: null,
 };
 
 function PastaDetails(props) {
@@ -67,7 +51,7 @@ function PastaDetails(props) {
           />
           <DetailsRow name="Label" value={props.pasta.label} link={`/label/${props.pasta.label}`} />
           <DetailsRow name="Syntax" value={props.pasta.syntax} />
-          <DateRow date={props.pasta.date} />
+          <DetailsRow name="Date" value={<DateView date={props.pasta.date} />} />
         </tbody>
       </table>
 

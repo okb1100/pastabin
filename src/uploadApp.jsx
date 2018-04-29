@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // replace axios.
 import Notify from './components/notify';
 import Navbar from './components/navbar';
-import UploadForm from './uploadForm';
+import UploadForm from './components/uploadForm';
 
 const { navbarConfig } = require('./pastabinConfig');
 

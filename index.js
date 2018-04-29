@@ -31,11 +31,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/:id', (req, res) => {
-  // Get the data from database and render it.
-  databaseHelper(dbUrl, dbName, collectionName, 'getOne', { id: req.params.id }, (err, obj) => {
-    if (obj) res.render('pasta', obj);
-    else res.sendStatus(404);
-  });
+  res.render('pasta');
 });
 app.get('/api/get/:id', (req, res) => {
   // Get the data from database and render it.
@@ -44,25 +40,36 @@ app.get('/api/get/:id', (req, res) => {
     else res.sendStatus(404);
   });
 });
-app.get('/u/:author', (req, res) => {
-  databaseHelper(
-    dbUrl,
-    dbName,
-    collectionName,
-    'list',
-    { uploader: req.params.author },
-    (err, obj) => {
-      if (obj) res.render('list', { list: obj });
-      else res.sendStatus(404);
-    },
-  );
+
+app.get('/author/:author', (req, res) => {
+  res.render('list');
 });
 
 app.get('/label/:label', (req, res) => {
-  databaseHelper(dbUrl, dbName, collectionName, 'list', { label: req.params.label }, (err, obj) => {
-    if (obj) res.render('list', { list: obj, isLabel: true });
-    else res.sendStatus(404);
-  });
+  res.render('list');
+});
+
+app.post('/api/list/', (req, res) => {
+  if (req.body.listType === 'label') {
+    databaseHelper(dbUrl, dbName, collectionName, 'list', { label: req.body.query }, (err, obj) => {
+      if (err) res.sendStatus(500);
+      else if (!obj) res.sendStatus(404);
+      else res.send(obj);
+    });
+  } else if (req.body.listType === 'author') {
+    databaseHelper(
+      dbUrl,
+      dbName,
+      collectionName,
+      'list',
+      { author: req.body.query },
+      (err, obj) => {
+        if (err) res.sendStatus(500);
+        else if (!obj) res.sendStatus(404);
+        else res.send(obj);
+      },
+    );
+  }
 });
 
 app.get('/download/:id', (req, res) => {

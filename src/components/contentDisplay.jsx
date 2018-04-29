@@ -54,7 +54,7 @@ class ContentDisplay extends React.Component {
   render() {
     const lines = this.props.content.split('\n').map((val, i) => `${i + 1}\n`);
     return (
-      <div className="col-md-9">
+      <div className={this.props.className}>
         <div className="card bg-dark">
           <div className="btn-group" role="group">
             <button
@@ -102,8 +102,10 @@ class ContentDisplay extends React.Component {
 ContentDisplay.propTypes = {
   content: PropTypes.string.isRequired,
   syntax: PropTypes.string,
+  className: PropTypes.string,
 };
 ContentDisplay.defaultProps = {
   syntax: 'plain-text',
+  className: '',
 };
 export default ContentDisplay;
